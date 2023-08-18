@@ -1,10 +1,12 @@
 import asyncio
 import aiohttp
 from uasiren.client import Client
+import time
 
 #run this is a while loop!
-async def main():
+async def check_for_alarm():
     async with aiohttp.ClientSession() as session:
+     while(True):       
         client = Client(session)
 
         # All response formats are available here: https://api.ukrainealarm.com/swagger/index.html
@@ -21,4 +23,6 @@ async def main():
             str_alarm = "There is no alarm in kiev city"
             print(str_alarm.lower())
 
-asyncio.run(main())
+        time.sleep(5)
+
+asyncio.run(check_for_alarm())
