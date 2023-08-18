@@ -8,14 +8,9 @@ async def main():
         client = Client(session)
 
         # All response formats are available here: https://api.ukrainealarm.com/swagger/index.html
-        regions = await client.get_regions()
-        print("regions list", regions)
 
-        all_alerts = await client.get_alerts()
-        print("all alerts", all_alerts)
-
-        region_alerts = await client.get_alerts(16)
-        print("alerts of region 16", region_alerts)
+        region_alerts = await client.get_alerts(31)
+        print("alerts of region 31 (м. київ)", region_alerts)
 
         last_alert_index = await client.get_last_alert_index()
         print("last alert index", last_alert_index)
