@@ -29,6 +29,6 @@ async def check_for_alarm():
         time.sleep(5)
 
 #run indefinitly
-while True :
-    asyncio.run(check_for_alarm())
+#while True :
+ #   asyncio.run(check_for_alarm())
     
