@@ -2,6 +2,10 @@ from typing import Final
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
+#air alarms
+import asyncio
+from check_for_alarms import check_for_alarm
+
 TOKEN: Final = '6454077984:AAHqNy50ZKN-daZvmUYDr_Z2ymdBUmNk3bk'
 BOT_USERNAME: Final = '@kievairalarm_bot'
 
@@ -31,7 +35,7 @@ def handle_response(text: str) -> str:
 
     if 'i love python' in processed:
         return 'Remember to subscribe!'
-        
+
     return 'I do not understand what you wrote...'
 
 
@@ -57,25 +61,25 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print(f'Update {update} caused error {context.error}')
 
-
-if __name__ == '__main__':
-    print('Starting the bot...')
-    app = Application.builder().token(TOKEN).build()
-
-
-    #Commands
-    app.add_handler(CommandHandler('start', start_command))
-    app.add_handler(CommandHandler('help', help_command))
-    app.add_handler(CommandHandler('custom', custom_command))
+#MAIN
+# if __name__ == '__main__':
+#     print('Starting the bot...')
+#     app = Application.builder().token(TOKEN).build()
 
 
-    #Messages
-    app.add_handler(MessageHandler(filters.TEXT, handle_message))
+#     #Commands
+#     app.add_handler(CommandHandler('start', start_command))
+#     app.add_handler(CommandHandler('help', help_command))
+#     app.add_handler(CommandHandler('custom', custom_command))
+
+
+#     #Messages
+#     app.add_handler(MessageHandler(filters.TEXT, handle_message))
                     
     
-    #Errors
-    app.add_error_handler(error)
+#     #Errors
+#     app.add_error_handler(error)
 
-    #Polls the bot
-    print('Polling...')
-    app.run_polling(poll_interval=3)
+#     #Polls the bot
+#     print('Polling...')
+#     app.run_polling(poll_interval=3)
