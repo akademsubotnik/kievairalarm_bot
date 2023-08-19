@@ -1,4 +1,5 @@
 """module for telegram messager in python"""
+import logging
 from typing import Final
 from telegram import Update
 from telegram.ext import (
@@ -9,8 +10,10 @@ from telegram.ext import (
     ContextTypes,
 )
 
+
 #air alarms
 import asyncio
+import nest_asyncio
 from check_for_alarms import check_for_alarm
 
 TOKEN: Final = '6454077984:AAHqNy50ZKN-daZvmUYDr_Z2ymdBUmNk3bk'
@@ -30,14 +33,14 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text('Hello! Please type something so that I can respond')
 async def custom_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """fnxn when /custom is typed"""
-    await update.message.reply_text('Hello! This is a custom command')    
+    await update.message.reply_text('Hello! This is a custom command')
 
 #responses
 def handle_response(text: str) -> str:
     """fnxn to handle message text"""
     processed: str = text.lower()
     if 'hello' in processed:
-        return 'Hey there!' 
+        return 'Hey there!'
     if 'how are you' in processed:
         return 'I am good thank you!'
     if 'i love python' in processed:
@@ -59,5 +62,11 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         response: str = handle_response(text)
     print('Bot:', response)
-    #asyncio.run(check_for_alarm())
+
+    nest_asyncio.apply()
+
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(asyncio.ensure_future(check_for_alarm()))
+    
     await update.message.reply_text(response)
+

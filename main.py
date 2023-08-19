@@ -16,7 +16,6 @@ from python_telegram_messager import (
     handle_message,
     error,
     TOKEN,
-    #handle_response,
 )
 
 #air alarms
