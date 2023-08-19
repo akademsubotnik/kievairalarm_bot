@@ -1,22 +1,36 @@
 """"main.py"""
+#python messager
+from typing import Final
+from telegram import Update
+from telegram.ext import (
+    Application, 
+    CommandHandler, 
+    MessageHandler, 
+    filters, 
+    #ContextTypes,
+)
+from python_telegram_messager import (
+    start_command,
+    help_command,
+    custom_command,
+    handle_message,
+    error,
+    TOKEN,
+    #handle_response,
+)
 
 #air alarms
 import asyncio
 from check_for_alarms import check_for_alarm
 
-#python messager
-from typing import Final
-from telegram import Update
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
-from python_telegram_messager import start_command,help_command,custom_command,handle_message,error,TOKEN,handle_response
 
-
-
+######
+#MAIN#
+######
 
 #ALARM CODE
 #while True:
 #asyncio.run(check_for_alarm())
-
 
 #PYTHON TELEGRAM MESSAGER
 print('Starting the bot...')
