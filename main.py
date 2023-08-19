@@ -1,5 +1,7 @@
 """"main.py"""
-import check_for_alarms
+import asyncio
+from check_for_alarms import check_for_alarm
 #import python_telegram_messager
 
-print("test")
+#while True:
+asyncio.run(check_for_alarm())
