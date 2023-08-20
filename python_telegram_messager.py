@@ -56,18 +56,6 @@ def handle_alarm(argvar: bool) -> str:
 #handle message
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """fnxn to handle message from user"""
-    message_type: str = update.message.chat.type
-    text: str = update.message.text
-    print(f'User ({update.message.chat.id}) in {message_type}: "{text}"')
-    if message_type == 'group':
-        if BOT_USERNAME in text:
-            new_text: str = text.replace(BOT_USERNAME, '').strip()
-            response: str = handle_response(new_text)
-        else:
-            return
-    else:
-        response: str = handle_response(text)
-    print('Bot:', response)
 
     nest_asyncio.apply()
     loop = asyncio.get_event_loop()
@@ -77,5 +65,4 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if alarm == False:
         await update.message.reply_text("there is no air alarm in kiev city")
 
-    await update.message.reply_text(response)
 
