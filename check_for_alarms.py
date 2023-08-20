@@ -7,7 +7,7 @@ import nest_asyncio
 
 
 #run this is a while loop!
-async def check_for_alarm():
+async def check_for_alarm() -> bool:
     """Function to show air alarms in kiev city."""
     async with aiohttp.ClientSession() as session:
         client = Client(session)
@@ -19,13 +19,13 @@ async def check_for_alarm():
             str_alarm = "There is an alarm in kiev city"
             print(str_alarm.upper())
             time.sleep(5)
-            #return True
+            return True
             #send message with telegram bot
         else:
             str_alarm = "There is no alarm in kiev city"
             print(str_alarm.lower())
             time.sleep(5)
-            #return False
+            return False
 
 
 #run indefinitly

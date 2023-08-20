@@ -47,6 +47,12 @@ def handle_response(text: str) -> str:
         return 'Remember to subscribe!'
     return 'I do not understand what you wrote...'
 
+def handle_alarm(argvar: bool) -> str:
+    if argvar == True:
+        return "THERE IS AN AIR ALARM IN KIEV CITY!"
+    if argvar == False:
+        return "there is no air alarm in kiev city"
+
 #handle message
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """fnxn to handle message from user"""
@@ -64,9 +70,12 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print('Bot:', response)
 
     nest_asyncio.apply()
-
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(asyncio.ensure_future(check_for_alarm()))
-    
+    alarm = loop.run_until_complete(asyncio.ensure_future(check_for_alarm()))
+    if alarm == True:
+        await update.message.reply_text("THERE IS AN AIR ALARM IN KIEV CITY!")
+    if alarm == False:
+        await update.message.reply_text("there is no air alarm in kiev city")
+
     await update.message.reply_text(response)
 
