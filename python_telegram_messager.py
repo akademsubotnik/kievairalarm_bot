@@ -3,13 +3,16 @@ import logging
 from typing import Final
 from telegram import Update
 from telegram.ext import (
-    #Application,
-    #CommandHandler,
-    #MessageHandler,
-    #filters,
+    Application,
+    CommandHandler,
+    MessageHandler,
+    filters,
     ContextTypes,
+    JobQueue,
 )
 
+#import time
+import time
 
 #air alarms
 import asyncio
@@ -35,7 +38,7 @@ async def custom_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """fnxn when /custom is typed"""
     await update.message.reply_text('Hello! This is a custom command')
 
-#responses
+#responses UNUSED
 def handle_response(text: str) -> str:
     """fnxn to handle message text"""
     processed: str = text.lower()
@@ -46,12 +49,6 @@ def handle_response(text: str) -> str:
     if 'i love python' in processed:
         return 'Remember to subscribe!'
     return 'I do not understand what you wrote...'
-
-def handle_alarm(argvar: bool) -> str:
-    if argvar == True:
-        return "THERE IS AN AIR ALARM IN KIEV CITY!"
-    if argvar == False:
-        return "there is no air alarm in kiev city"
 
 #handle message
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -66,3 +63,13 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("there is no air alarm in kiev city")
 
 
+async def callback_minute(context: ContextTypes.DEFAULT_TYPE):
+    nest_asyncio.apply()
+    loop = asyncio.get_event_loop()
+    alarm = loop.run_until_complete(asyncio.ensure_future(check_for_alarm()))
+    if alarm == True:
+        str_alarm = "THERE IS AN AIR ALARM IN KIEV CITY!"
+    if alarm == False:
+        str_alarm = "there is no air alarm in kiev city"
+
+    await context.bot.send_message(chat_id='@kcairalarm', text=str_alarm)

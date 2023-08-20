@@ -3,11 +3,13 @@
 from typing import Final
 from telegram import Update
 from telegram.ext import (
-    Application, 
-    CommandHandler, 
-    MessageHandler, 
-    filters, 
-    #ContextTypes,
+    Application,
+    CommandHandler,
+    MessageHandler,
+    filters,
+    ContextTypes,
+    JobQueue,
+
 )
 from python_telegram_messager import (
     start_command,
@@ -16,12 +18,15 @@ from python_telegram_messager import (
     handle_message,
     error,
     TOKEN,
+    callback_minute
 )
 
 #air alarms
 import asyncio
 from check_for_alarms import check_for_alarm
 
+#import time
+import time
 
 ######
 #MAIN#
@@ -42,6 +47,16 @@ app.add_handler(CommandHandler('custom', custom_command))
 app.add_handler(MessageHandler(filters.TEXT, handle_message))
 #Errors
 app.add_error_handler(error)
-#Polls the bot
-print('Polling...')
-app.run_polling(poll_interval=3)
+# #Polls the bot
+# print('Polling...')
+# app.run_polling(poll_interval=3)
+#Job Queue
+job_queue = app.job_queue
+job_minute = job_queue.run_repeating(callback_minute, interval=60, first=10)
+
+app.run_polling()
+
+# while True:
+
+#     time.sleep(5)
+
