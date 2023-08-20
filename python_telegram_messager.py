@@ -1,5 +1,5 @@
 """module for telegram messager in python"""
-import logging
+
 from typing import Final
 from telegram import Update
 from telegram.ext import (
@@ -8,11 +8,9 @@ from telegram.ext import (
     MessageHandler,
     filters,
     ContextTypes,
-    JobQueue,
+    #JobQueue,
 )
 
-#import time
-import time
 
 #air alarms
 import asyncio

@@ -1,9 +1,8 @@
 """Module providingFunction to show air alarms in kiev city."""
-import asyncio
 import time
 import aiohttp
 from uasiren.client import Client
-import nest_asyncio
+
 
 
 #run this is a while loop!
@@ -27,8 +26,3 @@ async def check_for_alarm() -> bool:
             time.sleep(5)
             return False
 
-
-#run indefinitly
-#while True :
- #   asyncio.run(check_for_alarm())
-    
