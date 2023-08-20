@@ -2,14 +2,7 @@
 
 from typing import Final
 from telegram import Update
-from telegram.ext import (
-    Application,
-    CommandHandler,
-    MessageHandler,
-    filters,
-    ContextTypes,
-    #JobQueue,
-)
+from telegram.ext import ContextTypes
 
 
 #air alarms
@@ -62,6 +55,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def callback_minute(context: ContextTypes.DEFAULT_TYPE):
+    """"fnxn to send messages to TG channel on timer"""
     nest_asyncio.apply()
     loop = asyncio.get_event_loop()
     alarm = loop.run_until_complete(asyncio.ensure_future(check_for_alarm()))
