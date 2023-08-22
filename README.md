@@ -13,3 +13,5 @@ To send messages to telegram with python code:
 Code works, just need to work on self hosting...
 
 #Future features, to include type of air alarm and a snippet of news regarding the reason for air alarm
+
+I followed this to create a reproducible python file and docker images https://docs.docker.com/language/python/build-images/
