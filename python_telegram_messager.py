@@ -20,6 +20,7 @@ from check_for_alarms import check_for_alarm
 #telethon_main
 import time
 from telethon import TelegramClient
+import aiohttp
 
 # Remember to use your own values from my.telegram.org!
 #telethon constss
@@ -40,21 +41,9 @@ async def get_latestmessage():
     #this prints posts with latest post first
     #IDEA --- Get latest message and set it to a variable, every 5 seconds check if the message has chagned.  Is the message can changed set as the latest message and repeat!  
     #Code to get latest message from "thisis_kyiv" TG channel
-    previous_message = None
-    while True:#while there is an air alarm run this
-        message = await CLIENT.get_messages('thisis_kyiv', 1)
-        
-        if message != previous_message:
-            print("Value has changed!")
-            actual_message = message[0].text
-            actual_sender = message[0].sender.username
-            print(actual_sender + " " + actual_message)
-            #SEND TO PRIVATE TG CHANNEL 
-        else:
-            print("VED")
-    
-        previous_message = message
-        time.sleep(5)
+    # async with aiohttp.ClientSession() as session:
+    #     client = TelegramClient(session)
+    message = await CLIENT.get_messages('thisis_kyiv', 1)
 
 #errors
 async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -74,6 +63,9 @@ async def alarmcheck_minute(context: ContextTypes.DEFAULT_TYPE):
         
     if alarm == False:
         str_alarm = "there is no air alarm in kiev city"
+        # nest_asyncio.apply()
+        # loop2 = asyncio.get_event_loop()
+        # message = loop.run_until_complete(asyncio.ensure_future(get_latestmessage()))
 
     await context.bot.send_message(chat_id='@kcairalarm', text=str_alarm)
 
