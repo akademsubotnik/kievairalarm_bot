@@ -1,8 +1,8 @@
 """"main.py"""
 
 from telegram.ext import Application
-#cp from thisis_kyiv to private telegram channel
-from readpublicchannels.telethon_main import get_latestmessage
+#cp from thisis_kyiv to private telegram channel MAYBE NOT NEEDED CUZ IN PTM???!!!
+#from readpublicchannels.telethon_main import get_latestmessage 
 from python_telegram_messager import (
     error,
     TOKEN,

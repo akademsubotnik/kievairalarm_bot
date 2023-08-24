@@ -28,6 +28,9 @@ async def alarmcheck_minute(context: ContextTypes.DEFAULT_TYPE):
     if alarm == True:
         str_alarm = "THERE IS AN AIR ALARM IN KIEV CITY!"
         #RUN THE TELETHON_MAIN FUNCTION!!!!!!
+        #await get_latestmessage()  
+    
+        
     if alarm == False:
         str_alarm = "there is no air alarm in kiev city"
 

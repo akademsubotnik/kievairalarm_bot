@@ -1,10 +1,11 @@
 from telethon import TelegramClient
 import time
+from typing import Final
 
 # Remember to use your own values from my.telegram.org!
-api_id = 16451568
-api_hash = '0e22fa1aaca1ef1bc7feba02f6f53622'
-client = TelegramClient('anon', api_id, api_hash)
+API_ID: Final = 16451568
+API_HASH: Final = '0e22fa1aaca1ef1bc7feba02f6f53622'
+CLIENT: Final = TelegramClient('anon', API_ID, API_HASH)
 
 
 async def get_latestmessage():
@@ -15,13 +16,14 @@ async def get_latestmessage():
     #Code to get latest message from "thisis_kyiv" TG channel
     previous_message = None
     while True:#while there is an air alarm run this
-        message = await client.get_messages('thisis_kyiv', 1)
+        message = await CLIENT.get_messages('thisis_kyiv', 1)
         
         if message != previous_message:
             print("Value has changed!")
             actual_message = message[0].text
             actual_sender = message[0].sender.username
             print(actual_sender + " " + actual_message)
+            #SEND TO PRIVATE TG CHANNEL
         else:
             print("VED")
     
@@ -29,6 +31,6 @@ async def get_latestmessage():
         time.sleep(5)
     
 
-with client:
-    client.loop.run_until_complete(get_latestmessage())
+with CLIENT:
+    CLIENT.loop.run_until_complete(get_latestmessage())
     
