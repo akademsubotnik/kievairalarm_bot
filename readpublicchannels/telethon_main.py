@@ -23,7 +23,7 @@ async def get_latestmessage():
             actual_message = message[0].text
             actual_sender = message[0].sender.username
             print(actual_sender + " " + actual_message)
-            #SEND TO PRIVATE TG CHANNEL
+            #SEND TO PRIVATE TG CHANNEL 
         else:
             print("VED")
     
@@ -31,6 +31,6 @@ async def get_latestmessage():
         time.sleep(5)
     
 
-with CLIENT:
-    CLIENT.loop.run_until_complete(get_latestmessage())
+#with CLIENT:
+#    CLIENT.loop.run_until_complete(get_latestmessage())
     
