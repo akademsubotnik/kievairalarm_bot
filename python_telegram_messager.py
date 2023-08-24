@@ -5,7 +5,12 @@ from telegram import Update
 from telegram.ext import ContextTypes
 
 #cp from thisis_kyiv to private telegram channel
-from readpublicchannels.telethon_main import get_latestmessage
+from readpublicchannels.telethon_main import (
+    get_latestmessage,
+    API_HASH,
+    API_ID,
+    CLIENT,
+)
 
 #air alarms
 import asyncio
