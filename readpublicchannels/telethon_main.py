@@ -20,9 +20,7 @@ async def get_latestmessage():
         
         if message != previous_message:
             print("Value has changed!")
-            actual_message = message[0].text
-            actual_sender = message[0].sender.username
-            print(actual_sender + " " + actual_message)
+            print(f"{message[0].sender.username} {message[0].text}")# == print(message[0].sender.username + " " + message[0].text)
             #SEND TO PRIVATE TG CHANNEL 
         else:
             print("VED")
