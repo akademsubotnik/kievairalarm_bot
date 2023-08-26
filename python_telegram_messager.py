@@ -60,11 +60,11 @@ async def alarmcheck_minute(context: ContextTypes.DEFAULT_TYPE):
     if alarm == False:
         str_alarm = "there is no air alarm in kiev city"
         async with CLIENT:
-                CLIENT.loop.run_until_complete(get_latestmessage())
+                latest_message = CLIENT.loop.run_until_complete(get_latestmessage())
         # nest_asyncio.apply()
         # loop2 = asyncio.get_event_loop()
         # message = loop.run_until_complete(asyncio.ensure_future(get_latestmessage()))
 
-    await context.bot.send_message(chat_id='@kcairalarm', text=str_alarm)
+    await context.bot.send_message(chat_id='@kcairalarm', text=latest_message)
 
 
