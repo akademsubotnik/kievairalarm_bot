@@ -54,17 +54,13 @@ async def alarmcheck_minute(context: ContextTypes.DEFAULT_TYPE):
     loop = asyncio.get_event_loop()
     alarm = loop.run_until_complete(asyncio.ensure_future(check_for_alarm()))
     if alarm == True:
-        str_alarm = "THERE IS AN AIR ALARM IN KIEV CITY!"
+        logging.warning("THERE IS AN AIR ALARM IN KIEV CITY!")
+        async with CLIENT:
+                latest_message = CLIENT.loop.run_until_complete(get_latestmessage())
+        await context.bot.send_message(chat_id='@kcairalarm', text=latest_message) 
         #RUN THE TELETHON_MAIN FUNCTION!!!!!!
         #await get_latestmessage()    
     if alarm == False:
-        str_alarm = "there is no air alarm in kiev city"
-        async with CLIENT:
-                latest_message = CLIENT.loop.run_until_complete(get_latestmessage())
-        # nest_asyncio.apply()
-        # loop2 = asyncio.get_event_loop()
-        # message = loop.run_until_complete(asyncio.ensure_future(get_latestmessage()))
-
-    await context.bot.send_message(chat_id='@kcairalarm', text=latest_message)
+        logging.warning("there is no air alarm in kiev city")    
 
 
