@@ -40,6 +40,7 @@ async def get_latestmessage():
     """"Get latestmessage from public telegram channel"""
     #Code to get latest message from "thisis_kyiv" TG channel
     message = await CLIENT.get_messages('air_alert_ua', 1)
+    print(message[0].text)
 
 #errors
 async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -54,11 +55,11 @@ async def alarmcheck_minute(context: ContextTypes.DEFAULT_TYPE):
     if alarm == True:
         str_alarm = "THERE IS AN AIR ALARM IN KIEV CITY!"
         #RUN THE TELETHON_MAIN FUNCTION!!!!!!
-        #await get_latestmessage()  
-    
-        
+        #await get_latestmessage()    
     if alarm == False:
         str_alarm = "there is no air alarm in kiev city"
+        async with CLIENT:
+                CLIENT.loop.run_until_complete(get_latestmessage())
         # nest_asyncio.apply()
         # loop2 = asyncio.get_event_loop()
         # message = loop.run_until_complete(asyncio.ensure_future(get_latestmessage()))
