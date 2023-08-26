@@ -36,11 +36,12 @@ TOKEN: Final = '6454077984:AAHqNy50ZKN-daZvmUYDr_Z2ymdBUmNk3bk'
 BOT_USERNAME: Final = '@kievairalarm_bot'
 
 
-async def get_latestmessage():
+async def get_latestmessage() -> str:
     """"Get latestmessage from public telegram channel"""
     #Code to get latest message from "thisis_kyiv" TG channel
     message = await CLIENT.get_messages('air_alert_ua', 1)
-    print(message[0].text)
+    latest_message = message[0].text
+    return latest_message
 
 #errors
 async def error(update: Update, context: ContextTypes.DEFAULT_TYPE):
