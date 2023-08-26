@@ -16,11 +16,11 @@ async def get_latestmessage():
     #Code to get latest message from "thisis_kyiv" TG channel
     previous_message = None
     while True:#while there is an air alarm run this
-        message = await CLIENT.get_messages('air_alert_ua', 1)
+        message = await CLIENT.get_messages('thisis_kyiv', 1)
         
         if message != previous_message:
             #logging.info("Value has changed!")
-            print(f"{message[0].sender.username} {message[0].text}")# == print(message[0].sender.username + " " + message[0].text)
+            print(f"{message[0].sender.username} {message[0].text}")
             #SEND TO PRIVATE TG CHANNEL 
         else:
             print("VED")

@@ -39,7 +39,7 @@ BOT_USERNAME: Final = '@kievairalarm_bot'
 async def get_latestmessage() -> str:
     """"Get latestmessage from public telegram channel"""
     #Code to get latest message from "thisis_kyiv" TG channel
-    message = await CLIENT.get_messages('air_alert_ua', 1)
+    message = await CLIENT.get_messages('thisis_kyiv', 1)
     latest_message = message[0].text
     return latest_message
 
