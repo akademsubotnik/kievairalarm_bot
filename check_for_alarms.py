@@ -2,7 +2,7 @@
 import time
 import aiohttp
 from uasiren.client import Client
-
+import logging
 
 
 #run this is a while loop!
