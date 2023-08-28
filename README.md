@@ -1,4 +1,7 @@
 # kievairalarm_bot
+
+TODO: Docker build is failing on pycairo after adding additional modules for passsing on messages to private channels
+
 This is the code for a telegram bot that will alert when there is an air alarm in Kiev city
 
 The bot is available at @kievairalarm_bot
